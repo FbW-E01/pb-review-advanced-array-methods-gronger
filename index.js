@@ -51,11 +51,13 @@ console.log("-----------------------------------------------------------");
 const randomOrder = shops.sort(function(shop) {
     let randomNumber = Math.round(Math.random() * 100);
 
-    if (shop.number > randomNumber) {
-        return shop;
-    } else {
-        return shop;
-    }   
+    return randomNumber;
+
+    // if (shop.number > randomNumber) {
+    //     return shop;
+    // } else {
+    //     return shop;
+    // }   
 }
 );  
 
@@ -72,7 +74,19 @@ console.log("-----------------------------------------------------------");
 // 5. Sort the array based on the "number" property, with the lowest number first.
 
 
-const smallestFirst = shops.sort((a, b) => a.number - b.number);
+const smallestFirst = shops.sort(function(a, b) { 
+    // return a.number - b.number -- this works, but is so short its kinda abstracted
+    if (a.number > b.number) {
+        return 1;
+    } else if (a.number < b.number) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+);
+
+// above takes 2 at a time ... this is how sort works. then compares them all with a and b (numerous times probs)
 
 // function(shop) {
 //     if (shop.number > 0) {
@@ -86,7 +100,19 @@ console.log("-----------------------------------------------------------");
 
 // 6. Sort the array based on the "number" property, with the highest number first.
 
-const largestFirst = shops.sort((a, b) => b.number - a.number);
+const largestFirst = shops.sort(function(a, b) {
+    if (a.number < b.number) {
+        return 1;
+    } else if (a.number > b.number) {
+        return -1;
+    } else {
+        return 0;
+    }
+});
+    
+
+    // (a, b) => b.number - a.number
+    // );
 
 console.log("largest first.:::::..........", largestFirst);
 
